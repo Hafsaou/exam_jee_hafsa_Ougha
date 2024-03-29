@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+ 
+
+
+<h:form>
+    <p:panel header="Add a Employee">
+        <h:panelGrid columns="2">
+            <h:outputLabel for="names" value="Title:"/>
+            <h:form>
+                <h:outputLabel for="names" value="Fruits: " />
+                <p:selectManyMenu id="names" value="#{employeBean.name}" required="true" requiredMessage="Please select at least one fruit">
+                    <f:selectItem itemValue="#{fruit}" itemLabel="#{name}" var="fruit" itemLabelVar="fruitLabel">
+                        <h:outputText value="#{fruitLabel.toUpperCase()}" />  </f:selectItem>
+                </p:selectManyMenu>
+            </h:form>
+
+            <h:outputLabel for="price" value="Price:"/>
+            <p:inputText id="price" value="#{bookBean.book.price}" required="true" requiredMessage="Price is required." validatorMessage="invalid price">
+                <f:validateDoubleRange minimum="0.0" />
+            </p:inputText>
+            <p:message for="price" />
+        </h:panelGrid>
+
+        <h:form>
+            <p:commandButton rendered="#{bookBean.affiche}" value="Add" action="#{bookBean.addBook()}" />
+        </h:form>
+        <h:form>
+            <p:commandButton rendered="#{not bookBean.affiche}" value="Update"  />
+        </h:form>
+
+
+    </p:panel>
+</h:form>
+</f:view>
+</html>
